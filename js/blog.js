@@ -8,9 +8,9 @@ var Blogs = Parse.Collection.extend({
 
 var blogs = new Blogs();
 
-var BlogsView = Parse.View.extend({
-    template: Handlebars.complile($('#blogs-tpl').html()),
-    render: function() {
+var BlogsView =  Parse.View.extend({
+    template: Handlebars.compile($('#blogs-tpl').html()),
+    render: function(){
         var collection = { blog: this.collection.toJSON() };
         this.$el.html(this.template(collection));
     }
