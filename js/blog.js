@@ -10,10 +10,9 @@ var blogs = new Blogs();
 
 blogs.fetch({
     success: function (blogs) {
-        blogs.each(function (object) {
-            console.log(object);
-            console.log(object.get("title"))
-        });
+        var blogsView = new BlogsView({ collection: blogs });
+        blogsView.render();
+        $('.main-container').html(blogsView.el);
 
     },
     error: function (blogs, error) {
@@ -21,7 +20,7 @@ blogs.fetch({
     }
 });
 
-var blogView = Parse.View.extend({
+var BlogsView = Parse.View.extend({
     template: Handlebars.complile($('#blogs-tpl').html()),
     render: function() {
         var collection = { blog: this.collection.toJSON() };
